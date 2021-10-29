@@ -1,0 +1,68 @@
+
+import "tfplan-functions" as plan
+import "strings"
+import "types"
+
+restrictedPorts = ["22" , "80" , "8080" , "3389" ]
+fwResources = plan.find_resources("google_compute_firewall")
+# print(fwResources)
+
+fwRulesMap = {}
+for fwResources as address,rc {
+    fwRulesMap[address] = []
+    allowRules = plan.evaluate_attribute(rc,"allow")
+    for allowRules as eachAllow {
+        ports = plan.evaluate_attribute(eachAllow,"ports")
+        for ports as eachPort {
+            append(fwRulesMap[address],eachPort)
+        }   
+    }
+}
+
+messages = {}
+#Range =[]
+
+for fwRulesMap as address , ports {
+    for ports as eachPort {
+        #print(eachPort)
+        if eachPort in restrictedPorts {
+            message = eachPort + " is not allowed"
+            if address in keys(messages) {
+                append(messages[address],message)
+            } else {
+                messages[address] = [message]
+            }
+        }
+        if (length(eachPort)) > 4 {
+             Port_Range = strings.split(eachPort,"-")
+             #print(Port_Range[0])
+             init_value=int(Port_Range[0])
+             #print(init_value)
+             last_value=int(Port_Range[1])
+             r_values=(range(init_value,last_value))
+             #print(r_values)
+             for restrictedPorts as j{
+                #print("r_values: "+plan.to_string(r_values))
+                #print("j: "+plan.to_string(j))
+                if (int(j)) in r_values{
+                    message =(string(j)+" the port number is in between the restricted port range "+string(init_value)+"-"+string(last_value)+" port not allowed")
+                    if address in keys(messages) {
+                    append(messages[address],message)
+                    } else {
+                       messages[address] = [message]
+                          }}}        
+
+               
+             }
+    }
+}
+
+print(messages)
+
+main = rule { true }
+
+
+GCP_IC_MTU = rule { length(messages) is   0 }
+
+
+main = rule { GCP_IC_MTU}

@@ -1,0 +1,37 @@
+id = "run-zrMRyaHZCdgMZVrT"
+created_at = "2021-10-21T05:22:57.787Z"
+message = "Triggered via UI"
+commit_sha = "7ff3f0fd06889bb676af5ee63cc55e19dc978bea"
+speculative = false
+is_destroy = false
+refresh = true
+refresh_only = false
+replace_addrs = null
+target_addrs = null
+
+variables = {
+	"access_token": {
+		"category":  "terraform",
+		"sensitive": true,
+	},
+}
+
+organization = {
+	"name": "ashwinknaik",
+}
+
+workspace = {
+	"auto_apply":  false,
+	"created_at":  "2021-10-21T05:21:03.915Z",
+	"description": null,
+	"id":          "ws-SLRXqtR9vM3eBTBZ",
+	"name":        "google_compute_firewall",
+	"tags":        [],
+	"vcs_repo": {
+		"branch":             "",
+		"display_identifier": "nrayavaram/google_compute_firewall",
+		"identifier":         "nrayavaram/google_compute_firewall",
+		"ingress_submodules": false,
+	},
+	"working_directory": "",
+}
