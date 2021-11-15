@@ -14,7 +14,7 @@
 * fwResources: This is the function, being used to get the all resourses regarding to "firewall".
 ##### the code :
 * finding and assigning the all available ports into the ports object.
-
+'''
 for fwResources as address,rc {
     fwRulesMap[address] = []
     allowRules = plan.evaluate_attribute(rc,"allow")
@@ -25,10 +25,11 @@ for fwResources as address,rc {
         }   
     }
 }
+'''
 
 * comparing each and every avilable port with the list of restricted ports. if any port is matching with restricted ports then it will generate a voilating message to show the user
 
-
+'''
 for fwRulesMap as address , ports {
     for ports as eachPort {
         #print(eachPort)
@@ -64,7 +65,7 @@ for fwRulesMap as address , ports {
     }
 }
 
-
+'''
 #### Terraform version
 * Terraform v1.0.7
 
