@@ -27,7 +27,7 @@ for fwResources as address,rc {
 }
 ```
 
-* comparing each and every avilable port with the list of restricted ports. if any port is matching with restricted ports then it will generate a voilating message to show the user
+* comparing each and every avilable port with the list of restricted ports. if any port is matching with restricted ports then it will generate a voilating message to show the user 
 
 ```
 for fwRulesMap as address , ports {
