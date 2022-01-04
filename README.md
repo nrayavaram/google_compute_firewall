@@ -67,7 +67,7 @@ for fwRulesMap as address , ports {
 
 ```
 #### Terraform version
-* Terraform v1.0.7
+* Terraform v1.0.7 
 
 #### sentinel versions
 * Sentinel v0.18.4
